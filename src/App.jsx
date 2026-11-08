@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 import {
@@ -10,6 +10,7 @@ import {
   GraduationCap,
   Code2,
   ExternalLink,
+  CircleCheck,
 } from "lucide-react";
 
 import {
@@ -106,29 +107,47 @@ const experiences = [
 // SKILLS DATA
 // ----------------------------------
 
+
 const skills = [
-  { name: "Python", icon: FaPython },
-  { name: "React", icon: FaReact },
-  { name: "JavaScript", icon: FaJs },
-  { name: "HTML5", icon: FaHtml5 },
-  { name: "CSS3", icon: FaCss3Alt },
-  { name: "Node.js", icon: FaNodeJs },
-  { name: "Git", icon: FaGitAlt },
-  { name: "Docker", icon: FaDocker },
-  { name: "MongoDB", icon: SiMongodb },
-  { name: "MySQL", icon: SiMysql },
-  { name: "Pandas", icon: SiPandas },
-  { name: "Flutter", icon: SiFlutter },
-  { name: "Firebase", icon: SiFirebase },
-  { name: "Tailwind CSS", icon: SiTailwindcss },
-  { name: "Scikit-learn", icon: SiScikitlearn },
+  { name: "Python", icon: FaPython, color: "#3776AB" },
+  { name: "React", icon: FaReact, color: "#61DAFB" },
+  { name: "JavaScript", icon: FaJs, color: "#F7DF1E" },
+  { name: "HTML5", icon: FaHtml5, color: "#E34F26" },
+  { name: "CSS3", icon: FaCss3Alt, color: "#1572B6" },
+  { name: "Node.js", icon: FaNodeJs, color: "#68A063" },
+  { name: "Git", icon: FaGitAlt, color: "#F05032" },
+  { name: "Docker", icon: FaDocker, color: "#2496ED" },
+  { name: "MongoDB", icon: SiMongodb, color: "#47A248" },
+  { name: "MySQL", icon: SiMysql, color: "#4479A1" },
+  { name: "Pandas", icon: SiPandas, color: "#E70488" },
+  { name: "Flutter", icon: SiFlutter, color: "#54C5F8" },
+  { name: "Firebase", icon: SiFirebase, color: "#FFCA28" },
+  { name: "Tailwind CSS", icon: SiTailwindcss, color: "#06B6D4" },
+  { name: "Scikit-learn", icon: SiScikitlearn, color: "#F7931E" },
 ];
+
 
 // ----------------------------------
 // MAIN APP
 // ----------------------------------
 
 function App() {
+  const [showAllProjects, setShowAllProjects] = useState(false);
+
+
+  const [showBackToTop, setShowBackToTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowBackToTop(window.scrollY > 300);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const [theme] = useState(() => {
     const previous = sessionStorage.getItem("abhi-theme");
 
@@ -146,6 +165,7 @@ function App() {
 
   return (
     <main
+      id="top"
       className="portfolio"
       style={{
         "--accent": theme.accent,
@@ -162,6 +182,18 @@ function App() {
 
         <span className="language">🇬🇧 En</span>
       </div>
+
+
+      {/* MAIN NAVIGATION */}
+
+      <nav className="main-navigation">
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#education">Education</a>
+        <a href="#skills">Skills</a>
+        <a href="#about">About Me</a>
+      </nav>
+
 
       {/* HERO SECTION */}
 
@@ -319,7 +351,23 @@ function App() {
         <p>Some things I've designed, developed and built.</p>
       </section>
 
+
       <section className="project-grid">
+
+        <ProjectCard
+          title="AI-DevOps Assistant"
+          subtitle="Agentic AI / DevOps"
+          description="An AI-powered support-ticket triage system demonstrating an agentic software development lifecycle."
+          tags="Python · AI Agents · RAG"
+          href="https://github.com/Abshek07/support-ticket-triage-assistant"
+        />
+
+        <ProjectCard
+          title="AI Incident Investigation Agent"
+          subtitle="Agentic AI / RAG"
+          description="Analyzes application logs and deployment records to identify possible root causes and recommend remediation."
+          tags="Python · FastAPI · Gemini · LangGraph"
+        />
 
         <ProjectCard
           title="Sentiment Analysis"
@@ -335,21 +383,35 @@ function App() {
           tags="Python · Pandas · Isolation Forest"
         />
 
-        <ProjectCard
-          title="Blue-Green Deployment"
-          subtitle="DevOps / Cloud"
-          description="Container-based deployment workflow designed for zero-downtime releases."
-          tags="Docker · Nginx · GitHub Actions"
-        />
+        {showAllProjects && (
+          <>
+            <ProjectCard
+              title="Blue-Green Deployment"
+              subtitle="DevOps / Cloud"
+              description="Container-based deployment workflow designed for zero-downtime releases."
+              tags="Docker · Nginx · GitHub Actions"
+            />
 
-        <ProjectCard
-          title="Silver Jubilee Portal"
-          subtitle="Web Development"
-          description="A bilingual digital portal with QR access and alumni engagement features."
-          tags="React · Tailwind · Firebase"
-        />
+            <ProjectCard
+              title="Silver Jubilee Portal"
+              subtitle="Web Development"
+              description="A bilingual digital portal with QR access and alumni engagement features."
+              tags="React · Tailwind · Firebase"
+            />
+          </>
+        )}
 
       </section>
+
+      <div className="projects-more-wrap">
+        <button
+          className="projects-more-button"
+          onClick={() => setShowAllProjects(!showAllProjects)}
+        >
+          {showAllProjects ? "View less projects ↑" : "View more projects ↓"}
+        </button>
+      </div>
+
 
       {/* EXPERIENCE SECTION */}
 
@@ -376,6 +438,71 @@ function App() {
         </div>
       </section>
 
+
+      {/* EDUCATION SECTION */}
+      <section className="education-section" id="education">
+        <div className="section-heading">
+          <span className="section-eyebrow">ACADEMIC BACKGROUND</span>
+          <h2>
+            Education <GraduationCap />
+          </h2>
+          <p>My academic journey and qualifications.</p>
+        </div>
+
+        <div className="education-grid">
+        {/* BACHELOR'S DEGREE */}
+        <motion.div
+          className="education-card card"
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="education-card-top">
+            <span className="education-date">2023 — 2027</span>
+            <GraduationCap className="education-icon" />
+          </div>
+
+          <h3>GM University</h3>
+          <p className="education-degree">
+            Bachelor of Technology (B.Tech)
+          </p>
+          <p>Computer Science and Engineering</p>
+
+          <div className="education-meta">
+            <span>Specialization: Data Science</span>
+            <span>CGPA: 7.6 / 10</span>
+            <span>Expected Graduation: 2027</span>
+          </div>
+        </motion.div>
+
+        {/* PRE-UNIVERSITY EDUCATION */}
+        <motion.div
+          className="education-card card"
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.15 }}
+        >
+          <div className="education-card-top">
+            <span className="education-date">PRE-UNIVERSITY</span>
+            <GraduationCap className="education-icon" />
+          </div>
+
+          <h3>JSS SM PU College</h3>
+          <p className="education-degree">
+            Pre-University Course (PUC)
+          </p>
+          <p>Dharwad, Karnataka</p>
+
+          <div className="education-meta">
+            <span>Percentage: 84.96%</span>
+          </div>
+        </motion.div>
+        </div>
+      </section>
+
+
       {/* FLOATING SKILLS SECTION */}
 
       <section className="skills-section" id="skills">
@@ -388,81 +515,121 @@ function App() {
           <p>Technologies and tools I work with.</p>
         </div>
 
-        <div className="floating-skills">
-          {skills.map((skill, index) => {
-            const Icon = skill.icon;
 
-            return (
-              <motion.div
-                key={skill.name}
-                className="floating-skill"
-                title={skill.name}
-                animate={{
-                  y: [0, -12 - (index % 4) * 3, 0],
-                  rotate: [0, index % 2 === 0 ? 5 : -5, 0],
-                }}
-                transition={{
-                  duration: 3 + (index % 4),
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: index * 0.15,
-                }}
-                whileHover={{ scale: 1.2 }}
-              >
-                <Icon />
-                <span>{skill.name}</span>
-              </motion.div>
-            );
-          })}
+        <div className="skills-marquee">
+          {/* TOP ROW: RIGHT TO LEFT */}
+          <div className="skills-marquee-row">
+            <div className="skills-marquee-track move-left">
+              {[...skills.slice(0, 8), ...skills.slice(0, 8)].map(
+                (skill, index) => {
+                  const Icon = skill.icon;
+
+                  return (
+                    <div
+                      className="marquee-skill"
+                      key={`top-${index}`}
+                      title={skill.name}
+                    >
+                      <Icon style={{ color: skill.color }} />
+                    </div>
+                  );
+                }
+              )}
+            </div>
+          </div>
+
+          {/* BOTTOM ROW: LEFT TO RIGHT */}
+          <div className="skills-marquee-row">
+            <div className="skills-marquee-track move-right">
+              {[...skills.slice(8), ...skills.slice(8)].map(
+                (skill, index) => {
+                  const Icon = skill.icon;
+
+                  return (
+                    <div
+                      className="marquee-skill"
+                      key={`bottom-${index}`}
+                      title={skill.name}
+                    >
+                      <Icon style={{ color: skill.color }} />
+                    </div>
+                  );
+                }
+              )}
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* EDUCATION SECTION */}
-
-      <section className="education-section" id="education">
-
-        <div className="section-heading">
-          <span className="section-eyebrow">ACADEMIC BACKGROUND</span>
-          <h2>
-            Education <GraduationCap />
-          </h2>
-        </div>
-
-        <div className="education-card card">
-          <span className="education-date">2023 — 2027</span>
-          <h3>GM University</h3>
-          <p>B.Tech — Computer Science, Data Science</p>
-          <span className="education-detail">
-            Expected graduation: 2027
-          </span>
-        </div>
-
-      </section>
 
       {/* ABOUT SECTION */}
 
       <section className="about-section" id="about">
+        <div className="about-container">
 
-        <div className="section-heading">
-          <span className="section-eyebrow">GET TO KNOW ME</span>
-          <h2>About Me ✧</h2>
+          {/* Heading */}
+          <div className="about-heading">
+            <h2>
+              About Me
+              <CircleCheck size={27} />
+            </h2>
+          </div>
+
+          {/* Description */}
+          <div className="about-description">
+            <p>
+              I'm a Computer Science undergraduate at GM University,
+              specializing in Data Science. I'm passionate about
+              software development and enjoy turning ideas into
+              practical applications.
+            </p>
+
+            <p>
+              I've worked on projects involving Python, React,
+              Flutter, databases and AI technologies. I enjoy
+              learning new technologies and building solutions
+              that solve real-world problems.
+            </p>
+
+            <p>
+              Currently, I'm focusing on strengthening my software
+              engineering skills, exploring full-stack development
+              and preparing for opportunities where I can grow
+              as a developer.
+            </p>
+          </div>
+
+          {/* Avatar + Contact Card */}
+          <div className="about-bottom">
+
+            <div className="about-avatar">
+              <img
+                src="/avatars/call-me-avatar-cropped.png"
+                alt="Developer avatar"
+              />
+            </div>
+
+            <div className="about-contact-card">
+
+              <a href="mailto:abhishekgoudapatil1407@gmail.com">
+                <Mail size={17} />
+                <span>abhishekgoudapatil@gmail.com</span>
+              </a>
+
+              <a
+                href="https://linkedin.com/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <FaLinkedin size={17} />
+                <span>Abhishekagouda Patil</span>
+              </a>
+
+            </div>
+
+          </div>
+
         </div>
-
-        <div className="about-card card">
-          <p>
-            I'm a Computer Science undergraduate at GM
-            University, specializing in Data Science.
-            I enjoy developing software, exploring AI
-            technologies and building practical solutions.
-          </p>
-
-          <p>
-            My interests include Python development,
-            full-stack engineering, machine learning
-            and cloud technologies.
-          </p>
-        </div>
-
       </section>
 
       {/* CONTACT SECTION */}
@@ -506,6 +673,19 @@ function App() {
         </p>
       </footer>
 
+      {/* BACK TO TOP */}
+      {showBackToTop && (
+        <a
+          href="#top"
+          className="back-to-top"
+          aria-label="Back to top"
+          title="Back to top"
+        >
+          ↑
+        </a>
+      )}
+
+
     </main>
   );
 }
@@ -519,6 +699,7 @@ function ProjectCard({
   subtitle,
   description,
   tags,
+  href,
 }) {
   return (
     <motion.article
@@ -532,9 +713,16 @@ function ProjectCard({
           <span>{subtitle}</span>
         </div>
 
-        <a href="#projects" aria-label={`View ${title}`}>
-          <ArrowUpRight />
-        </a>
+        {href && (
+          <a
+            href={href}
+            target="_blank"
+            rel="noreferrer"
+            aria-label={`View ${title}`}
+          >
+            <ArrowUpRight />
+          </a>
+        )}
       </div>
 
       <p>{description}</p>
