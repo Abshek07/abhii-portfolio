@@ -441,6 +441,7 @@ function App() {
 
       {/* EDUCATION SECTION */}
       <section className="education-section" id="education">
+
         <div className="section-heading">
           <span className="section-eyebrow">ACADEMIC BACKGROUND</span>
           <h2>
@@ -450,57 +451,60 @@ function App() {
         </div>
 
         <div className="education-grid">
-        {/* BACHELOR'S DEGREE */}
-        <motion.div
-          className="education-card card"
-          initial={{ opacity: 0, y: 25 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <div className="education-card-top">
-            <span className="education-date">2023 — 2027</span>
-            <GraduationCap className="education-icon" />
-          </div>
 
-          <h3>GM University</h3>
-          <p className="education-degree">
-            Bachelor of Technology (B.Tech)
-          </p>
-          <p>Computer Science and Engineering</p>
+          {/* BACHELOR'S DEGREE */}
+          <motion.div
+            className="education-card card"
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="education-card-top">
+              <span className="education-date">2023 — 2027</span>
+              <GraduationCap className="education-icon" />
+            </div>
 
-          <div className="education-meta">
-            <span>Specialization: Data Science</span>
-            <span>CGPA: 7.6 / 10</span>
-            <span>Expected Graduation: 2027</span>
-          </div>
-        </motion.div>
+            <h3>GM University</h3>
+            <p className="education-degree">
+              Bachelor of Technology (B.Tech)
+            </p>
+            <p>Computer Science and Engineering</p>
 
-        {/* PRE-UNIVERSITY EDUCATION */}
-        <motion.div
-          className="education-card card"
-          initial={{ opacity: 0, y: 25 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.15 }}
-        >
-          <div className="education-card-top">
-            <span className="education-date">PRE-UNIVERSITY</span>
-            <GraduationCap className="education-icon" />
-          </div>
+            <div className="education-meta">
+              <span>Specialization: Data Science</span>
+              <span>CGPA: 7.6 / 10</span>
+              <span>Expected Graduation: 2027</span>
+            </div>
+          </motion.div>
 
-          <h3>JSS SM PU College</h3>
-          <p className="education-degree">
-            Pre-University Course (PUC)
-          </p>
-          <p>Dharwad, Karnataka</p>
+          {/* PRE-UNIVERSITY EDUCATION */}
+          <motion.div
+            className="education-card card"
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.15 }}
+          >
+            <div className="education-card-top">
+              <span className="education-date">PRE-UNIVERSITY</span>
+              <GraduationCap className="education-icon" />
+            </div>
 
-          <div className="education-meta">
-            <span>Percentage: 84.96%</span>
-          </div>
-        </motion.div>
+            <h3>JSS SM PU College</h3>
+            <p className="education-degree">
+              Pre-University Course (PUC)
+            </p>
+            <p>Dharwad, Karnataka</p>
+
+            <div className="education-meta">
+              <span>Percentage: 84.96%</span>
+            </div>
+          </motion.div>
+
         </div>
       </section>
+
 
 
       {/* FLOATING SKILLS SECTION */}
