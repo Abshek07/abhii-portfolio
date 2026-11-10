@@ -126,6 +126,15 @@ const skills = [
   { name: "Scikit-learn", icon: SiScikitlearn, color: "#F7931E" },
 ];
 
+const heroAvatars = [
+  "/avatars/Confident 3D Character with Floating Heart.png",
+  "/avatars/coding-avatar-transparent.png",
+  "/avatars/Content Music Listener Avatar.png",
+  "/avatars/Curly-Haired Coffee Portrait.png",
+  "/avatars/Curly-Haired Character with Backpack.png",
+  "/avatars/Thoughtful Coder with Idea Bulb.png",
+];
+
 
 // ----------------------------------
 // MAIN APP
@@ -134,7 +143,10 @@ const skills = [
 function App() {
   const [showAllProjects, setShowAllProjects] = useState(false);
 
-
+  const [heroAvatar] = useState(() => {
+    const randomIndex = Math.floor(Math.random() * heroAvatars.length);
+    return heroAvatars[randomIndex];
+  });
   const [showBackToTop, setShowBackToTop] = useState(false);
 
   useEffect(() => {
@@ -207,7 +219,7 @@ function App() {
         >
           <div className="avatar-glow">
             <motion.img
-              src="/avatars/Neon Developer Avatar Portrait.png"
+              src={heroAvatar}
               alt="Abhishekagouda Patil"
               className="avatar"
               animate={{
@@ -608,7 +620,7 @@ function App() {
 
             <div className="about-avatar">
               <img
-                src="/avatars/call-me-avatar-cropped.png"
+                src="/avatars/Cheerful 3D Avatar Calling You.png"
                 alt="Developer avatar"
               />
             </div>
@@ -636,42 +648,16 @@ function App() {
         </div>
       </section>
 
-      {/* CONTACT SECTION */}
-
+      {/* COMPACT FOOTER: PART OF THE ABOUT LAYOUT */}
       <footer className="contact-section" id="contact">
-        <h2>Let's Connect</h2>
-
-        <p>
-          Have an opportunity or interesting project?
-          Let's connect.
-        </p>
-
-        <a
-          href="mailto:abhishekgoudapatil1407@gmail.com"
-          className="contact-button"
-        >
-          <Mail size={17} />
-          Contact Me
-        </a>
-
         <div className="footer-socials">
-          <a
-            href="https://github.com/Abshek07"
-            target="_blank"
-            rel="noreferrer"
-          >
+          <a href="https://github.com/Abshek07" target="_blank" rel="noreferrer" aria-label="GitHub">
             <FaGithub />
           </a>
-
-          <a
-            href="https://linkedin.com/"
-            target="_blank"
-            rel="noreferrer"
-          >
+          <a href="https://linkedin.com/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
             <FaLinkedin />
           </a>
         </div>
-
         <p className="copyright">
           © 2026 Abhishekagouda Patil. All rights reserved.
         </p>
