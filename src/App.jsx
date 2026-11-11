@@ -371,7 +371,7 @@ function App() {
           subtitle="Agentic AI / DevOps"
           description="An AI-powered support-ticket triage system demonstrating an agentic software development lifecycle."
           tags="Python · AI Agents · RAG"
-          href="https://github.com/Abshek07/support-ticket-triage-assistant"
+          href="https://github.com/Abshek07/rag-research-assistant.git"
         />
 
         <ProjectCard
@@ -379,6 +379,7 @@ function App() {
           subtitle="Agentic AI / RAG"
           description="Analyzes application logs and deployment records to identify possible root causes and recommend remediation."
           tags="Python · FastAPI · Gemini · LangGraph"
+          href="https://github.com/Abshek07/AI-Incident-Investigation-Agent.git"
         />
 
         <ProjectCard
@@ -386,6 +387,7 @@ function App() {
           subtitle="Machine Learning / NLP"
           description="A text classification model using Python, TF-IDF and Scikit-learn."
           tags="Python · NLP · Scikit-learn"
+          href="https://github.com/Abshek07/Sentiment-Analysis.git"
         />
 
         <ProjectCard
@@ -393,6 +395,7 @@ function App() {
           subtitle="AI / Data Science"
           description="A machine learning workflow for identifying unusual patterns in datasets."
           tags="Python · Pandas · Isolation Forest"
+          href="https://github.com/Abshek07/ANOMLY-DETECTION-PROJECT.git"
         />
 
         {showAllProjects && (
@@ -402,6 +405,7 @@ function App() {
               subtitle="DevOps / Cloud"
               description="Container-based deployment workflow designed for zero-downtime releases."
               tags="Docker · Nginx · GitHub Actions"
+              href="https://github.com/Abshek07/support-ticket-triage-assistant"
             />
 
             <ProjectCard
@@ -409,6 +413,7 @@ function App() {
               subtitle="Web Development"
               description="A bilingual digital portal with QR access and alumni engagement features."
               tags="React · Tailwind · Firebase"
+              href="https://github.com/Abshek07/silver-jubilee-legacy.git"
             />
           </>
         )}
